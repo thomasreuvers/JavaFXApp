@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<GridPane styleClass="loginWindow" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
+
+    <!-- Add Styling Sheets -->
+    <stylesheets>
+        <URL value="@loginWindow.css" />
+    </stylesheets>
+   <children>
+   
+       <!-- Add Login Label -->
+       <Label prefHeight="66.0" prefWidth="124.0" styleClass="loginTitle" text="Log In" GridPane.columnIndex="2" GridPane.columnSpan="2" />
+   
+       <!-- Add Username Label -->
+       <Label text="Username:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+   
+       <!-- Add Username Text Field -->
+       <TextField fx:id="userName" promptText="Username" styleClass="inputField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+   
+       <!-- Add Password Label -->
+       <Label text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+   
+       <!-- Add Password Password Field -->
+       <PasswordField fx:id="passWord" promptText="Password" styleClass="inputField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+   
+       <!-- Add Login Button -->
+       <Button fx:id="loginBtn" onAction="#loginUser" styleClass="loginBtn" text="Login" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints />
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+
+</GridPane>

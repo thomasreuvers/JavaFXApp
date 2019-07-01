@@ -1,0 +1,23 @@
+.loginWindow{
+    -fx-background-image: url("../Assets/background.jpg");
+    -fx-background-position: center;
+    -fx-background-size: 1200;
+}
+.loginTitle {
+    -fx-font-size: 45px;
+}
+.inputField {
+    -fx-pref-height: 30px;
+    -fx-pref-width: 200px;
+}
+.loginBtn {
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: rgba(255,255,255, 0.7);
+}
+.loginBtn:hover{
+    -fx-background-color: rgba(224,224,224, 0.7);
+    -fx-cursor: hand;
+}
+Label{
+    -fx-text-fill: white;
+}
