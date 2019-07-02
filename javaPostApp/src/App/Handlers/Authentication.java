@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Authentication {
 
-    private String userKey;
+    private static String userKey;
 
     public boolean login(String username, String password)//TODO: Check for more secure dataype for password
     {
@@ -41,19 +41,19 @@ public class Authentication {
             {
                 if(rs.getBoolean(1)) //If user credentials match a row.
                 {
-                   verification = true; //If row with username and password has been found.
-
                     sql = "SELECT userKey FROM users WHERE username = ? and password = ?";
                     stmt = con.prepareStatement(sql);
                     stmt.setString(1, username);
                     stmt.setString(2, password);
 
-                    rs= stmt.executeQuery();
+                    rs = stmt.executeQuery();
 
                     while(rs.next())
                     {
-                        userKey += rs.getString(1); //Set userKey as current logged in users key. //TODO: GET userKey from database userkey is always null
+                        userKey = rs.getString(1); //Set userKey as current logged in users key.
                     }
+
+                   verification = true; //If row with username and password has been found.
 
                 } else{
                     invalidCredentials(); //User credentials do not exist in database error will be called.
@@ -100,6 +100,28 @@ public class Authentication {
             stmt.setString(4, password);
             stmt.setString(5, userKey);
 
+            stmt.execute(); //TODO: If input fields are empty show something else than connectionNull();
+
+            con.close(); //Close connection
+
+        }catch(Exception e)
+        {
+            System.out.println(e);
+            connectionNull(); //Error connecting to server a connection error will be called.
+        }
+    }
+
+    public void dropDatabase(String serverAddress, String databaseName)
+    {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://127.0.0.1/post_app?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET","root", "password123");
+
+            String sql ="DELETE FROM data_bases WHERE serverAddress = ? AND database_name = ?"; //Delete Database data from data_bases table in database post_app
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, serverAddress);
+            stmt.setString(2, databaseName);
             stmt.execute();
 
             con.close(); //Close connection
@@ -120,7 +142,7 @@ public class Authentication {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://127.0.0.1/post_app?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET","root","password123");
 
-            String sql = "SELECT serveraddress, database_name FROM data_bases WHERE userKey = ?";
+            String sql = "SELECT * FROM data_bases WHERE userKey = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, userKey); // replace first ? with value for userKey
@@ -129,7 +151,7 @@ public class Authentication {
 
             while(rs.next())
             {
-                DatabaseModal db = new DatabaseModal(rs.getString(1), rs.getString(2)); // New instance of DatabaseModal class which takes database data
+                DatabaseModal db = new DatabaseModal(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)); // New instance of DatabaseModal class which takes database data
                 databaseModalList.add(db); // Add the instance to a DatabaseModal list;
             }
 

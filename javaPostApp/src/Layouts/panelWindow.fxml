@@ -10,9 +10,11 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Database">
+          <Menu mnemonicParsing="true" text="_Database">
             <items>
-              <MenuItem fx:id="addDatabaseMenuItem" mnemonicParsing="false" onAction="#onMenuItemClick" text="Add" />
+              <MenuItem fx:id="addDatabaseMenuItem" mnemonicParsing="true" onAction="#onMenuItemClick" text="_Add" />
+                <MenuItem fx:id="deleteDatabaseMenuItem" mnemonicParsing="true" onAction="#dropCurrentDatabase" text="D_elete" />
+              <MenuItem mnemonicParsing="false" onAction="#testAction" text="test"/>
             </items>
           </Menu>
         </menus>

@@ -38,7 +38,19 @@ public class PanelController implements Initializable {
         list.addAll(auth.fetchDatabases());
 
         tableView.setItems(list);
+    }
 
+    @FXML
+    private void testAction(ActionEvent event) throws IOException
+    {
+        System.out.println(tableView.getItems().get(tableView.getSelectionModel().getFocusedIndex()).getUsername());//TODO: PRINT OUT SELECTED MODAL'S NAME! Do same for server adress.
+    }
+    @FXML
+    private void dropCurrentDatabase(ActionEvent event) throws IOException
+    {
+        auth.dropDatabase(tableView.getItems().get(tableView.getSelectionModel().getFocusedIndex()).getServerURL(), tableView.getItems().get(tableView.getSelectionModel().getFocusedIndex()).getDatabaseName());
+        list.clear();
+        list.addAll(auth.fetchDatabases());
     }
 
 
@@ -47,5 +59,7 @@ public class PanelController implements Initializable {
     {
         Panel mainPanel = new Panel();
         mainPanel.createInputDialog();
+        list.clear();
+        list.addAll(auth.fetchDatabases());
     }
 }

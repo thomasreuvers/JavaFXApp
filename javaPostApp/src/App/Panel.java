@@ -76,14 +76,14 @@ public class Panel {
         loginButton.setDisable(true);
 
         // Do some validation (using the Java 8 lambda syntax).
-        username.textProperty().addListener((observable, oldValue, newValue) -> {
+        serverUrl.textProperty().addListener((observable, oldValue, newValue) -> {
             loginButton.setDisable(newValue.trim().isEmpty());
         });
 
         dialog.getDialogPane().setContent(grid);
 
         // Request focus on the username field by default.
-        Platform.runLater(() -> username.requestFocus());
+        Platform.runLater(() -> serverUrl.requestFocus());
 
         // Convert the result to a username-password-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {

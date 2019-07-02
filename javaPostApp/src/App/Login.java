@@ -20,7 +20,7 @@ public class Login {
         Parent loginWindow = FXMLLoader.load(getClass().getResource("../Layouts/loginWindow.fxml"));
 
         primaryStage.setTitle("Project Post");
-        primaryStage.setScene(new Scene(loginWindow, 400, 450));
+        primaryStage.setScene(new Scene(loginWindow, 500, 550));
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
         primaryStage.show();
