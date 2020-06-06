@@ -19,7 +19,7 @@ public class Login {
     {
         Parent loginWindow = FXMLLoader.load(getClass().getResource("../Layouts/loginWindow.fxml"));
 
-        primaryStage.setTitle("Project Post");
+        primaryStage.setTitle("Desktop TMS");
         primaryStage.setScene(new Scene(loginWindow, 500, 550));
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
